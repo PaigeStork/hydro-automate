@@ -1,7 +1,7 @@
 from hms.model.JythonHms import *
 
-OpenProject("WFK_2yrStorm", "C:\\Users\\paige\\OneDrive\\Documents\\HMS_WFK_Final\\WFK_2yrStorm")
-Compute("MSE4 No Dams")
+#OpenProject("WFK_2yrStorm", "C:\\Users\\paige\\OneDrive\\Documents\\HMS_WFK_Final\\WFK_2yrStorm")
+#Compute("MSE4 No Dams")
 
 
 #OpenProject("WFK_5yrStorm", "C:\\Users\\paige\\OneDrive\\Documents\\HMS_WFK_Final\\WFK_5yrStorm")

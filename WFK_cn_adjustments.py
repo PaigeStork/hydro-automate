@@ -68,14 +68,13 @@ WFK_CNs = WFK_CNs_input.get_basin_CN_input() #this is a subbasin:CN dictionary
 #define function to calculate lag (as referenced in part 630.1502a Hydrology National Engineering Handbook; see above)
 def calcL(subbasin):
     S = (1000/WFK_CNs[subbasin]) - 10
-    L = ((WFK_params[subbasin][0]**0.8)*(S+1)**0.7)/(1900*WFK_params[subbasin][1]**0.5)
-    return L
+    L = ((WFK_params[subbasin][0]**0.8)*(S+1)**0.7)/(1900*WFK_params[subbasin][1]**0.5)*60
+    return round(L,2)
 
 #create dictionary of subbasins' calculated lag
 WFK_Ls = {}
 for subbasin in range(len(WFK_params_subbasins)): #42 instances
     WFK_Ls[f'{WFK_params_subbasins[subbasin]}'] = calcL(f'{WFK_params_subbasins[subbasin]}')
-
 
 #order the CN and L lists so that they can be eaten by re.sub; create template from which to regenerate ordered lists for each storm, as list.pop() consumes list
 with open(r"C:\Users\paige\OneDrive\Documents\HMS_WFK_Final\Original_BasinFile\West_Fork_Kickapoo___No_Dams.basin",'r') as f:
@@ -90,7 +89,6 @@ ordered_CNs_template = []
 for ordered_subbasin in range(len(ordered_subbasins)):
     ordered_CNs_template.append(WFK_CNs[f'{ordered_subbasins[ordered_subbasin]}'])
     
-
 
 #-----------------------------------------------------------------------------------------------------------        
 #define replacement functions
@@ -114,7 +112,7 @@ ordered_CNs = ordered_CNs_template.copy()
 with open(r"C:\Users\paige\OneDrive\Documents\HMS_WFK_Final\WFK_2yrStorm\West_Fork_Kickapoo___No_Dams.basin",'r') as f:
     fdata = f.read()
 fdata = re.sub(r"Curve Number: (\d\d.\d\d*)", replace_CN, fdata)
-fdata = re.sub(r"Lag: (\d\d.\d\d*)", replace_L, fdata)
+fdata = re.sub(r"Lag: (\d\d*.\d\d*)", replace_L, fdata)
 #write to the .basin file
 with open(r"C:\Users\paige\OneDrive\Documents\HMS_WFK_Final\WFK_2yrStorm\West_Fork_Kickapoo___No_Dams.basin",'w') as f:
     f.write(fdata)
@@ -127,7 +125,7 @@ ordered_CNs = ordered_CNs_template.copy()
 with open(r"C:\Users\paige\OneDrive\Documents\HMS_WFK_Final\WFK_5yrStorm\West_Fork_Kickapoo___No_Dams.basin",'r') as f:
     fdata = f.read()
 fdata = re.sub(r"Curve Number: (\d\d.\d\d*)", replace_CN, fdata)
-fdata = re.sub(r"Lag: (\d\d.\d\d*)", replace_L, fdata)
+fdata = re.sub(r"Lag: (\d\d*.\d\d*)", replace_L, fdata)
 #write to the .basin file
 with open(r"C:\Users\paige\OneDrive\Documents\HMS_WFK_Final\WFK_5yrStorm\West_Fork_Kickapoo___No_Dams.basin",'w') as f:
     f.write(fdata)
@@ -140,7 +138,7 @@ ordered_CNs = ordered_CNs_template.copy()
 with open(r"C:\Users\paige\OneDrive\Documents\HMS_WFK_Final\WFK_10yrStorm\West_Fork_Kickapoo___No_Dams.basin",'r') as f:
     fdata = f.read()
 fdata = re.sub(r"Curve Number: (\d\d.\d\d*)", replace_CN, fdata)
-fdata = re.sub(r"Lag: (\d\d.\d\d*)", replace_L, fdata)
+fdata = re.sub(r"Lag: (\d\d*.\d\d*)", replace_L, fdata)
 #write to the .basin file
 with open(r"C:\Users\paige\OneDrive\Documents\HMS_WFK_Final\WFK_10yrStorm\West_Fork_Kickapoo___No_Dams.basin",'w') as f:
     f.write(fdata)
@@ -153,7 +151,7 @@ ordered_CNs = ordered_CNs_template.copy()
 with open(r"C:\Users\paige\OneDrive\Documents\HMS_WFK_Final\WFK_25yrStorm\West_Fork_Kickapoo___No_Dams.basin",'r') as f:
     fdata = f.read()
 fdata = re.sub(r"Curve Number: (\d\d.\d\d*)", replace_CN, fdata)
-fdata = re.sub(r"Lag: (\d\d.\d\d*)", replace_L, fdata)
+fdata = re.sub(r"Lag: (\d\d*.\d\d*)", replace_L, fdata)
 #write to the .basin file
 with open(r"C:\Users\paige\OneDrive\Documents\HMS_WFK_Final\WFK_25yrStorm\West_Fork_Kickapoo___No_Dams.basin",'w') as f:
     f.write(fdata)
@@ -166,7 +164,7 @@ ordered_CNs = ordered_CNs_template.copy()
 with open(r"C:\Users\paige\OneDrive\Documents\HMS_WFK_Final\WFK_50yrStorm\West_Fork_Kickapoo___No_Dams.basin",'r') as f:
     fdata = f.read()
 fdata = re.sub(r"Curve Number: (\d\d.\d\d*)", replace_CN, fdata)
-fdata = re.sub(r"Lag: (\d\d.\d\d*)", replace_L, fdata)
+fdata = re.sub(r"Lag: (\d\d*.\d\d*)", replace_L, fdata)
 #write to the .basin file
 with open(r"C:\Users\paige\OneDrive\Documents\HMS_WFK_Final\WFK_50yrStorm\West_Fork_Kickapoo___No_Dams.basin",'w') as f:
     f.write(fdata)
@@ -179,7 +177,7 @@ ordered_CNs = ordered_CNs_template.copy()
 with open(r"C:\Users\paige\OneDrive\Documents\HMS_WFK_Final\WFK_100yrStorm\West_Fork_Kickapoo___No_Dams.basin",'r') as f:
     fdata = f.read()
 fdata = re.sub(r"Curve Number: (\d\d.\d\d*)", replace_CN, fdata)
-fdata = re.sub(r"Lag: (\d\d.\d\d*)", replace_L, fdata)
+fdata = re.sub(r"Lag: (\d\d*.\d\d*)", replace_L, fdata)
 #write to the .basin file
 with open(r"C:\Users\paige\OneDrive\Documents\HMS_WFK_Final\WFK_100yrStorm\West_Fork_Kickapoo___No_Dams.basin",'w') as f:
     f.write(fdata)
@@ -194,7 +192,7 @@ with open(r"C:\Users\paige\OneDrive\Documents\HMS_WFK_Final\WFK_200yrStorm\West_
 #for loop; create a lookup between .basin file subbasin and above dictionaries
 #OR, reorder and pop from end with each function... this seems way easier, less robust
 fdata = re.sub(r"Curve Number: (\d\d.\d\d*)", replace_CN, fdata)
-fdata = re.sub(r"Lag: (\d\d.\d\d*)", replace_L, fdata)
+fdata = re.sub(r"Lag: (\d\d*.\d\d*)", replace_L, fdata)
 #write to .basin file
 with open(r"C:\Users\paige\OneDrive\Documents\HMS_WFK_Final\WFK_200yrStorm\West_Fork_Kickapoo___No_Dams.basin",'w') as f:
     f.write(fdata)
@@ -208,7 +206,7 @@ ordered_CNs = ordered_CNs_template.copy()
 with open(r"C:\Users\paige\OneDrive\Documents\HMS_WFK_Final\WFK_500yrStorm\West_Fork_Kickapoo___No_Dams.basin",'r') as f:
     fdata = f.read()
 fdata = re.sub(r"Curve Number: (\d\d.\d\d*)", replace_CN, fdata)
-fdata = re.sub(r"Lag: (\d\d.\d\d*)", replace_L, fdata)
+fdata = re.sub(r"Lag: (\d\d*.\d\d*)", replace_L, fdata)
 #write to .basin file
 with open(r"C:\Users\paige\OneDrive\Documents\HMS_WFK_Final\WFK_500yrStorm\West_Fork_Kickapoo___No_Dams.basin",'w') as f:
     f.write(fdata)

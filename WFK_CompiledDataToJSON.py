@@ -68,9 +68,11 @@ CompiledDataFromDSS = json.load(f)
     
 #WSE CALCULATION
 #create some useful elements to make looping easier
-storms = ['2', '5', '10','25', '50', '100', '200', '500']
+storms = ['2', '5', '10','25', '50', '100', '200', '500'] #storms 2-25 not currently functioning
+#storms = ['50', '100', '200', '500']
 
 calc_wse = {'2':{}, '5':{}, '10':{}, '25':{}, '50':{},'100':{}, '200':{}, '500':{}}
+#calc_wse = {'50':{},'100':{}, '200':{}, '500':{}}
 for storm in range(len(storms)): #8 instances
     for station in range(len(key_station)): #42 instances
         #under 2yr Qmax

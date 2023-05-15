@@ -58,7 +58,8 @@ class DSSOutput:
  'WFK H - JUNCTION',
  'HC E  - JUNCTION',
  'JUNCTION - OUTFLOW']
-        self.events = ["2", "5", "10", "25", "50","100", "200", "500"]
+        self.events = ["2", "5", "10", "25", "50","100", "200", "500"] #2yr-25yr not currently working for WFK
+        #self.events = ["50","100", "200", "500"]
 
     def out_data(self, dss_file, event):
         return_dict = {}
