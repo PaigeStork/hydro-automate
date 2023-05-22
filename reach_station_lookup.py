@@ -22,8 +22,8 @@ for reach in range(len(hms_reach)):
     
 with open(r"C:\Users\paige\OneDrive\Documents\HMS_WFK_Final\HMS_RAS_NetworkCorrelation_WFK_090722.csv",'r') as f:
         fdata = f.read()        
-hms_reach = re.findall(r"\n.*?,.*?,.*?,.*?,.*?(.*?)\,",fdata)
-ras_station = re.findall(r"\n.*?,.*?,.*?,.*?,.*?,.*?(.*?)\,",fdata)
+hms_reach = re.findall(r"\n.*?,.*?,.*?,.*?(.*?)\,",fdata)
+ras_station = re.findall(r"\n.*?,.*?,.*?,.*?,.*?(.*?)\,",fdata)
 #ras_station = [float(x) for x in ras_station]
 WFK_reach_station_lookup = {}
 for reach in range(len(hms_reach)):
